@@ -1,7 +1,7 @@
 import React from 'react';
 import { Product } from './Product';
 
-export function ProductList({ products = [] }) {
+export function ProductList({ products = [], onAddClick }) {
     return (
         <React.Fragment>
             <h5 className="flex-grow-0">
@@ -10,11 +10,7 @@ export function ProductList({ products = [] }) {
             <ul className="list-group products">
                 {products.map((v) => (
                     <li key={v.id} className="list-group-item d-flex mt-3">
-                        <Product
-                            productName={v.productName}
-                            category={v.category}
-                            price={v.price}
-                        />
+                        <Product {...v} onAddClick={onAddClick} />
                     </li>
                 ))}
             </ul>
