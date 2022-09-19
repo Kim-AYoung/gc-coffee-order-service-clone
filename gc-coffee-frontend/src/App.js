@@ -1,30 +1,12 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ProductList } from './components/ProductList';
 import { Summary } from './components/Summary';
+import axios from 'axios';
 
 function App() {
-    const [products, setProducts] = useState([
-        {
-            id: 'uuid-1',
-            productName: '콜롬비아 커피 1',
-            category: '커피빈',
-            price: 5000,
-        },
-        {
-            id: 'uuid-2',
-            productName: '콜롬비아 커피 2',
-            category: '커피빈',
-            price: 5000,
-        },
-        {
-            id: 'uuid-3',
-            productName: '콜롬비아 커피 3',
-            category: '커피빈',
-            price: 5000,
-        },
-    ]);
+    const [products, setProducts] = useState([]);
 
     const [items, setItems] = useState([]);
 
@@ -38,6 +20,12 @@ function App() {
         setItems(updatedItems);
         console.log(product, 'added!');
     };
+
+    useEffect(() => {
+        axios
+            .get('http://localhost:8080/api/v1/products')
+            .then((v) => setProducts(v.data));
+    }, []);
 
     return (
         <div className="container-fluid">
