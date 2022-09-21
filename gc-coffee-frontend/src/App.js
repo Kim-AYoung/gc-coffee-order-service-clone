@@ -10,11 +10,13 @@ function App() {
 
     const [items, setItems] = useState([]);
 
-    const handleAddBtnClicked = (id) => {
-        const product = products.find((v) => v.id === id);
-        const found = items.find((v) => v.id === id);
+    const handleAddBtnClicked = (productId) => {
+        const product = products.find((v) => v.productId === productId);
+        const found = items.find((v) => v.productId === productId);
         const updatedItems = found
-            ? items.map((v) => (v.id === id ? { ...v, count: v.count + 1 } : v))
+            ? items.map((v) =>
+                  v.productId === productId ? { ...v, count: v.count + 1 } : v
+              )
             : [...items, { ...product, count: 1 }];
 
         setItems(updatedItems);

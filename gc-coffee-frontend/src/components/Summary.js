@@ -17,7 +17,7 @@ export function Summary({ items = [] }) {
             <hr />
             {items.map((v) => (
                 <SummaryItem
-                    key={v.id}
+                    key={v.productId}
                     productName={v.productName}
                     count={v.count}
                 />
